@@ -1,3 +1,4 @@
+# class lcd
 class Lcd
   attr_accessor :size, :numbers, :digits
 
@@ -9,29 +10,30 @@ class Lcd
     show_digits
   end
 
+  # convert number into digit and add to digit array
   def convert_number
     @numbers.to_s.chars.each do |number|
       case number.to_i
       when 0
-        @digits << cero()
+        @digits << cero
       when 1
-        @digits << one()
+        @digits << one
       when 2
-        @digits << two()
+        @digits << two
       when 3
-        @digits << three()
+        @digits << three
       when 4
-        @digits << four()
+        @digits << four
       when 5
-        @digits << five()
+        @digits << five
       when 6
-        @digits << six()
+        @digits << six
       when 7
-        @digits << seven()
+        @digits << seven
       when 8
-        @digits << eight()
+        @digits << eight
       when 9
-        @digits << nine()
+        @digits << nine
       end
     end
   end
@@ -39,65 +41,76 @@ class Lcd
   def cero
     nu = [' - ', '| |', '   ', '| |', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def one
     nu = ['   ', '  |', '   ', '  |', '   ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def two
     nu = [' - ', '  |', ' - ', '|  ', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def three
     nu = [' - ', '  |', ' - ', '  |', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def four
     nu = ['   ', '| |', ' - ', '  |', '   ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def five
     nu = [' - ', '|  ', ' - ', '  |', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def six
     nu = [' - ', '|  ', ' - ', '| |', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def seven
     nu = [' - ', '  |', '   ', '  |', '   ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def eight
     nu = [' - ', '| |', ' - ', '| |', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
   def nine
     nu = [' - ', '| |', ' - ', '  |', ' - ']
     return nu if @size == 1
+
     change_size(nu)
   end
 
-  def change_size(nu)
-    nu.map! do |n|
+  # change digit size
+  def change_size(num)
+    num.map! do |n|
       if n.include?('-')
         n[n.index('-') + 1] = '-' * (@size - 1)
         n += ' '
@@ -116,13 +129,14 @@ class Lcd
         n
       end
     end
+    # add line for size change
     counter = @size
     until counter == 1
-      nu.insert(2, nu[1])
-      nu.insert(-2, nu[-2])
+      num.insert(2, num[1])
+      num.insert(-2, num[-2])
       counter -= 1
     end
-    nu
+    num
   end
 
   def show_digits
@@ -130,7 +144,7 @@ class Lcd
     @digits.transpose.each do |array|
       string = ''
       counter = 0
-      until counter == @digits.length do
+      until counter == @digits.length
         string += array[counter]
         string += ' '
         counter += 1
@@ -139,5 +153,4 @@ class Lcd
     end
     columns.each { |c| p c }
   end
-
 end
